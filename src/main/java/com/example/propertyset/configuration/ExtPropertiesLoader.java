@@ -22,11 +22,12 @@ public class ExtPropertiesLoader implements EnvironmentAware {
   public void setEnvironment(Environment environment) {
     this.environment = (ConfigurableEnvironment) environment;
 
+    // Resource 설정
     Resource resource = new ClassPathResource(EXTRA_YML_PATH);
-
     YamlPropertySourceLoader loader = new YamlPropertySourceLoader();
 
     try {
+      //Property를 읽고 environment 객체에 추가
       PropertySource<?> yamlProperties = loader.load("extra", resource).get(0);
       this.environment.getPropertySources().addLast(yamlProperties);
     } catch (IOException e) {
