@@ -45,6 +45,7 @@ public class ExtPropertiesLoader implements EnvironmentAware {
         if (propertySource.getProperty("on-profile") == null) {
           mergedProperties.putAll((Map<String,Object>) propertySource.getSource());
         }
+        // profiles에 "on-profile"과 일치하는 값이 있을 때만 읽어서 맵에 추가
         else if (activeProfiles.contains(propertySource.getProperty("on-profile"))) {
           mergedProperties.putAll((Map<String,Object>) propertySource.getSource());
         }
@@ -52,9 +53,6 @@ public class ExtPropertiesLoader implements EnvironmentAware {
 
       this.environment.getPropertySources().addLast(new MapPropertySource("extraProperties",mergedProperties));
 
-      for (String profile : activeProfiles) {
-        System.out.println(profile);
-      }
     } catch (IOException e) {
       throw new RuntimeException(resourcePath + " load error", e);
     }
