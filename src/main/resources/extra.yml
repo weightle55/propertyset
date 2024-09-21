@@ -2,13 +2,3 @@
 ext:
   test:
     value: localVal
-
----
-spring:
-  config:
-    activate:
-      on-profile: dev
-
-ext:
-  test:
-    value: devVal
