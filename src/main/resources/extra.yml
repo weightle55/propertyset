@@ -4,11 +4,15 @@ ext:
     value: localVal
 
 ---
-spring:
-  config:
-    activate:
-      on-profile: dev
+on-profile: dev
 
 ext:
   test:
     value: devVal
+
+---
+on-profile: release
+
+ext:
+  test:
+    value: releaseVal
